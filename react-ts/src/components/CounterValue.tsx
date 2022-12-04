@@ -1,10 +1,10 @@
 import React from "react";
 
-interface CounterValueProps {
+interface ICounterValueProps {
   counter: number
 }
 
-export default function CounterValue(props: CounterValueProps) {
+export default function CounterValue(props: ICounterValueProps) {
   return (
     <div>
       <p>{ props.counter }</p>

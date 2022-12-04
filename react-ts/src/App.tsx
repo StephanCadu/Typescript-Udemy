@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import CounterValue from './components/CounterValue';
+import Counter from './components/Counter';
 
 function App() {
   return (
     <div className="App">
-      <CounterValue counter={2} />
+      <Counter initialValue={4321} />
     </div>
   );
 }
