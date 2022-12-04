@@ -2,12 +2,12 @@
 
 // @logClass
 // @logClassIf(true)
-@decorator('testando', 123)
-class Eletro {
-  constructor() {
-    console.log('novo!!!');
-  }
-}
+// @decorator('testando', 123)
+// class Eletro {
+//   constructor() {
+//     console.log('novo!!!');
+//   }
+// }
 
 function logClass(constructor: Function) {
   // a função do decorator só é executada quando a classe é carregada
@@ -15,11 +15,11 @@ function logClass(constructor: Function) {
 }
 
 // todas as instâncias da classe não executam a função decorator
-new Eletro()
-new Eletro()
-new Eletro()
-new Eletro()
-new Eletro()
+// new Eletro()
+// new Eletro()
+// new Eletro()
+// new Eletro()
+// new Eletro()
 
 function emptyDecorator(_: Function) {}
 
@@ -56,6 +56,25 @@ function logObject(constructor: Constructor) {
   }
 }
 
-new Test()
-new Test()
-new Test()
+// new Test()
+// new Test()
+
+interface Eletro {
+  log?(): void
+}
+
+function logable(constructor: Function) {
+  constructor.prototype.log = function() {
+    console.log(this);
+  }
+}
+
+@logable
+class Eletro {
+  constructor() {
+    console.log('novo!!!');
+  }
+}
+
+const eletro = new Eletro()
+eletro.log && eletro.log()
