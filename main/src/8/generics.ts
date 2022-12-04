@@ -26,13 +26,13 @@ grades.push(8.7)
 
 console.log(grades);
 
-const imprimir = <T>(args: T[]): void => {
+const log = <T>(args: T[]): void => {
   args.forEach((arg) => console.log(arg))
 }
 
-imprimir<number>([1, 2, 3])
-imprimir<string>(['a', 'b', 'c'])
-imprimir<boolean>([true, false, true])
+log<number>([1, 2, 3])
+log<string>(['a', 'b', 'c'])
+log<boolean>([true, false, true])
 
 // tipo genérico
 type Echo = <T>(data: T) => T
@@ -81,40 +81,45 @@ const d2 = new Data(14, 7, 2003);
 
 console.log(new DateDiff(d1, d2).exec());
 
-// desafio fila
+// desafio line
 
-class Fila<T> {
-  private fila: T[]
+// aplicando uma restrição a um tipo genérico
+class Line<T extends number | string> {
+  private line: T[]
 
   constructor(...args: T[]) {
-    this.fila = args
+    this.line = args
   }
 
-  entrar(elm: T) {
-    this.fila.push(elm)
+  enter(elm: T) {
+    this.line.push(elm)
   }
 
-  proximo(): T | null {
-    if (this.fila.length) {
-      const primeiro = this.fila[0]
-      this.fila.splice(0, 1)
+  next(): T | null {
+    if (this.line.length) {
+      const primeiro = this.line[0]
+      this.line.splice(0, 1)
       return primeiro
     } else {
       return null
     }
   }
 
-  imprimir(): void {
-    console.log(this.fila);
+  log(): void {
+    console.log(this.line);
   }
 }
 
-const fila = new Fila<string>('Gui', 'Ana', 'Pedro')
-fila.imprimir();
-fila.entrar('Cadu');
-fila.imprimir();
-fila.proximo()
-fila.proximo()
-fila.proximo()
-fila.proximo()
-fila.proximo()
+// daria erro se o tipo T extendesse somente o tipo number
+const line = new Line<string>('Gui', 'Ana', 'Pedro')
+line.log();
+line.enter('Cadu');
+line.log();
+line.next()
+line.next()
+line.next()
+line.next()
+line.next()
+
+// da erro pois a classe Line não extende o tipo boolean
+// const wrongLine = new Line<boolean>(true, false);
