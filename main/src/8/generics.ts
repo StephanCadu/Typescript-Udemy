@@ -33,3 +33,8 @@ const imprimir = <T>(args: T[]): void => {
 imprimir<number>([1, 2, 3])
 imprimir<string>(['a', 'b', 'c'])
 imprimir<boolean>([true, false, true])
+
+// tipo genérico
+type Echo = <T>(data: T) => T
+const callEcho: Echo = echoGeneric
+console.log(callEcho('Something'));
