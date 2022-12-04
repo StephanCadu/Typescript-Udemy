@@ -38,3 +38,26 @@ imprimir<boolean>([true, false, true])
 type Echo = <T>(data: T) => T
 const callEcho: Echo = echoGeneric
 console.log(callEcho('Something'));
+
+// classe com generics
+
+abstract class Binary<T, R> {
+  constructor(public op1: T, public op2: T) {}
+
+  abstract exec(): R
+}
+
+// console.log(new Binary(1, 2).exec());
+// console.log(new Binary('a', 'b').exec());
+// console.log(new Binary(1, 'a').exec());
+// console.log(new Binary({}, []).exec());
+
+class BinarySum extends Binary<number, number> {
+  exec(): number {
+    return this.op1 + this.op2
+  }
+}
+
+console.log(new BinarySum(3, 4).exec());
+
+
