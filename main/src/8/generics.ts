@@ -123,3 +123,47 @@ line.next()
 
 // da erro pois a classe Line não extende o tipo boolean
 // const wrongLine = new Line<boolean>(true, false);
+
+// Desafio Mapa
+// Array de Objetos (Chave/Valor) -> itens
+// Métodos: obter(Chave), colocar({ C, V })
+// limpar(), imprimir()
+
+type Obj<A, B> = { chave: A, valor: B };
+
+class Mapa<K, V> {
+  private mapa: Obj<K, V>[] = new Array<Obj<K, V>>()
+
+  constructor(...args: Obj<K, V>[]) {
+    this.mapa = args
+  }
+
+  obter(chave: K): Obj<K, V> | null {
+    const result = this.mapa.find((obj) => obj.chave === chave);
+    return result ? result : null
+  }
+
+  colocar(obj: Obj<K, V>): void {
+    const elementFound = this.obter(obj.chave);
+    if (elementFound) {
+      elementFound.valor = obj.valor
+    } else {
+      this.mapa.push(obj);
+    }
+  }
+
+  imprimir(): void { console.log(this.mapa) }
+
+  limpar(): void { this.mapa = new Array<Obj<K, V>>() }
+}
+ 
+const mapa = new Mapa<number, string>()
+mapa.colocar({ chave: 1, valor: 'Pedro' })
+mapa.colocar({ chave: 2, valor: 'Rebeca' })
+mapa.colocar({ chave: 3, valor: 'Maria' })
+mapa.colocar({ chave: 1, valor: 'Gustavo' })
+ 
+console.log(mapa.obter(2))
+mapa.imprimir()
+mapa.limpar()
+mapa.imprimir()
