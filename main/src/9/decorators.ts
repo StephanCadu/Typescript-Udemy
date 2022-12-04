@@ -136,7 +136,7 @@ class CheckAccount {
   }
 
   @freeze
-  debit(value: number) {
+  debit(@paramInfo value: number) {
     if (value <= this.balance) { 
       this.balance -= value
       return true
@@ -168,6 +168,7 @@ console.log(newAccount.getBalance());
 
 console.log(newAccount.getBalance());
 
+// attribute decorator
 function notNegative(target: any, prop: string) {
   delete target[prop]
 
@@ -183,4 +184,11 @@ function notNegative(target: any, prop: string) {
       }
     }
   })
+}
+
+// parameter decorator
+function paramInfo(target: any, method: string, paramIndex: number) {
+  console.log((target));
+  console.log((method));
+  console.log((paramIndex));
 }
