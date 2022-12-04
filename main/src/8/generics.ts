@@ -26,3 +26,10 @@ grades.push(8.7)
 
 console.log(grades);
 
+const imprimir = <T>(args: T[]): void => {
+  args.forEach((arg) => console.log(arg))
+}
+
+imprimir<number>([1, 2, 3])
+imprimir<string>(['a', 'b', 'c'])
+imprimir<boolean>([true, false, true])
