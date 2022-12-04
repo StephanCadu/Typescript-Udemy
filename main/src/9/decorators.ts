@@ -78,3 +78,49 @@ class Eletro {
 
 const eletro = new Eletro()
 eletro.log && eletro.log()
+
+// colocando mais de um decorator em uma classe
+
+@decorator('um', 2)
+@logable
+@logClass
+@logClassIf(true)
+class Decorated {
+  constructor() {
+    console.log('I\'m a very decorated class');
+    
+  }
+}
+
+type Profile = {
+  nome: string
+  email: string
+  admin: boolean
+}
+
+// desafio decorator admin
+const loggedUser: Profile = {
+  nome: 'Nome',
+  email: 'email@mail.com',
+  admin: false,
+}
+
+@adminProfile
+class changeAdmin {
+  critic() {
+    console.log('Something critic was changed');
+  }
+}
+
+function adminProfile<T extends Constructor>(constructor: T) {
+  return class extends constructor {
+    constructor(...args: any[]) {
+      super(...args)
+      if(!loggedUser || !loggedUser.admin) {
+        throw new Error('Permission denied')
+      }
+    }
+  }
+}
+
+new changeAdmin().critic()
