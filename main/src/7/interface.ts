@@ -42,4 +42,16 @@ greeting(client)
 client.greet('Pinkman')
 console.log(client.lastPurchase);
 
+// usando funções
 
+interface FuncCalc {
+  (a: number, b: number): number
+}
+
+const pow: FuncCalc = (base: number, exp: number): number => {
+  // Math.pow(base, exp)
+  // base ** exp
+  return Array(exp).fill(base).reduce((acc, cur) => acc * cur);
+}
+
+console.log(pow(3, 10));
