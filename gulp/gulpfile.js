@@ -1,22 +1,32 @@
-const { series, parallel, src, dest } = require('gulp');
-// const del = require('del')
-const browserify = require('browserify')
-const source = require('vinyl-source-stream')
-const tsify = require('tsify')
+import gulp from 'gulp';
+import { deleteAsync } from 'del'
+import browserify from 'browserify'
+import source from 'vinyl-source-stream'
+import tsify from 'tsify'
 
-function cleanDist(cb) {
-  cb()
+const { series, parallel, src, dest } = gulp
+
+async function cleanDist() {
+  return await deleteAsync(['dist'])
 }
 
-function copyHTML(cb) {
-  cb()
+function copyHTML() {
+  return src('public/**/*')
+    .pipe(dest('dist'))
 }
 
-function createJS(cb) {
-  cb()
+function createJS() {
+  return browserify({
+    basedir: '.',
+    entries: [ 'src/app.ts']
+  })
+    .plugin(tsify)
+    .bundle()
+    .pipe(source('app.js'))
+    .pipe(dest('dist'))
 }
 
-exports.default = series(
+export default series(
   cleanDist,
   parallel(createJS, copyHTML)
 )
