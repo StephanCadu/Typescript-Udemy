@@ -80,3 +80,41 @@ const d1 = new Data(23, 4, 1981);
 const d2 = new Data(14, 7, 2003);
 
 console.log(new DateDiff(d1, d2).exec());
+
+// desafio fila
+
+class Fila<T> {
+  private fila: T[]
+
+  constructor(...args: T[]) {
+    this.fila = args
+  }
+
+  entrar(elm: T) {
+    this.fila.push(elm)
+  }
+
+  proximo(): T | null {
+    if (this.fila.length) {
+      const primeiro = this.fila[0]
+      this.fila.splice(0, 1)
+      return primeiro
+    } else {
+      return null
+    }
+  }
+
+  imprimir(): void {
+    console.log(this.fila);
+  }
+}
+
+const fila = new Fila<string>('Gui', 'Ana', 'Pedro')
+fila.imprimir();
+fila.entrar('Cadu');
+fila.imprimir();
+fila.proximo()
+fila.proximo()
+fila.proximo()
+fila.proximo()
+fila.proximo()
