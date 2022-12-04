@@ -27,3 +27,19 @@ console.log(changeName(me));
 console.log(greeting(me));
 console.log(me.greet('Salamanca'));
 
+// usando classes
+class Client implements IPerson {
+  name: string = ''
+  greet(lastname: string): void {
+    console.log(`Hello ${this.name} ${lastname}`);
+  }
+  lastPurchase: Date = new Date
+}
+
+const client = new Client
+client.name = 'Jess'
+greeting(client)
+client.greet('Pinkman')
+console.log(client.lastPurchase);
+
+
