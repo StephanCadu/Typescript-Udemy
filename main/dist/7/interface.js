@@ -20,6 +20,7 @@ console.log(me.greet('Salamanca'));
 class Client {
     constructor() {
         this.name = '';
+        this.lastPurchase = new Date;
     }
     greet(lastname) {
         console.log(`Hello ${this.name} ${lastname}`);
@@ -29,3 +30,26 @@ const client = new Client;
 client.name = 'Jess';
 greeting(client);
 client.greet('Pinkman');
+console.log(client.lastPurchase);
+const pow = (base, exp) => {
+    // Math.pow(base, exp)
+    // base ** exp
+    return Array(exp).fill(base).reduce((acc, cur) => acc * cur);
+};
+console.log(pow(3, 10));
+class A {
+    a() { }
+}
+class AB {
+    a() { }
+    b() { }
+}
+class ABC {
+    a() { }
+    b() { }
+    c() { }
+}
+class ABD {
+    a() { }
+    b() { }
+}
