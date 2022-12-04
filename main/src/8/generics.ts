@@ -17,3 +17,12 @@ console.log(echoGeneric(4));
 // ambas dão erro pois o tipo definido não possui length
 // console.log(echoGeneric({ nome: 'Eu' }).length);
 // console.log(echoGeneric<number>(27).length);
+
+// generics api
+const grades: Array<number> = [10, 3, 4.5, 9.2]
+
+grades.push(8.7)
+// grades.push('8.7')
+
+console.log(grades);
+
