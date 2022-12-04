@@ -55,3 +55,37 @@ const pow: FuncCalc = (base: number, exp: number): number => {
 }
 
 console.log(pow(3, 10));
+
+// herança
+interface A {
+  a(): void
+}
+
+interface B {
+  b(): void
+}
+
+interface ABC extends A, B {
+  c(): void
+}
+
+class A implements A {
+  a(): void {}
+}
+
+class AB implements A, B {
+  a(): void {}
+  b(): void {}
+}
+
+class ABC implements ABC {
+  a(): void {}
+  b(): void {}
+  c(): void {}
+}
+
+abstract class ABD implements A, B {
+  a(): void {}
+  b(): void {}
+  abstract d(): void
+}
