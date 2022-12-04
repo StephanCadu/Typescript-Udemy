@@ -128,6 +128,7 @@ new changeAdmin().critic()
 // decorator de método
 
 class CheckAccount {
+  @notNegative
   private balance: number
   
   constructor(balance: number) {
@@ -166,3 +167,20 @@ console.log(newAccount.getBalance());
 // }
 
 console.log(newAccount.getBalance());
+
+function notNegative(target: any, prop: string) {
+  delete target[prop]
+
+  Object.defineProperty(target, prop, {
+    get: function(): any {
+      return target[`_${prop}`]
+    },
+    set: function(value: number): void {
+      if (value < 0) {
+        throw new Error('Invalid value')
+      } else {
+        target[`_${prop}`] = value
+      }
+    }
+  })
+}
