@@ -3,6 +3,8 @@ import { deleteAsync } from 'del'
 import browserify from 'browserify'
 import source from 'vinyl-source-stream'
 import tsify from 'tsify'
+import uglify from 'gulp-uglify'
+import rename from 'gulp-rename'
 
 const { series, parallel, src, dest } = gulp
 
@@ -26,7 +28,15 @@ function createJS() {
     .pipe(dest('dist'))
 }
 
+function createProductionJs() {
+  return src('dist/app.js')
+    .pipe(rename('app.min.js'))
+    .pipe(uglify())
+    .pipe(dest('dist'))
+}
+
 export default series(
   cleanDist,
-  parallel(createJS, copyHTML)
+  parallel(createJS, copyHTML),
+  createProductionJs
 )
