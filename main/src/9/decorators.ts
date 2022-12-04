@@ -34,3 +34,28 @@ function decorator(a: string, b: number) {
     console.log(`${a} ${b}`);
   }
 }
+
+// @logClassIf(true)
+@logObject
+class Test {
+  constructor() {
+    console.log('TEST');
+  }
+}
+
+type Constructor = { new(...args: any[]): {} }
+
+function logObject(constructor: Constructor) {
+  console.log('Carregado...');
+  return class extends constructor {
+    constructor(...args: any[]) {
+      console.log('Antes');
+      super(...args)
+      console.log('Depois');
+    }
+  }
+}
+
+new Test()
+new Test()
+new Test()
