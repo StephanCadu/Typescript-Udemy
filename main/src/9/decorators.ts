@@ -1,6 +1,8 @@
 // decorator é um comentário que adiciona funcionalidade em um bloco de código
 
-@logClass
+// @logClass
+// @logClassIf(true)
+@decorator('testando', 123)
 class Eletro {
   constructor() {
     console.log('novo!!!');
@@ -18,3 +20,17 @@ new Eletro()
 new Eletro()
 new Eletro()
 new Eletro()
+
+function emptyDecorator(_: Function) {}
+
+// factory é uma função que retorna um decorator
+
+function logClassIf(value: boolean) {
+  return value ? logClass : emptyDecorator
+}
+
+function decorator(a: string, b: number) {
+  return function(_: Function): void {
+    console.log(`${a} ${b}`);
+  }
+}
