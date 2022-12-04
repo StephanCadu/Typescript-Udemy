@@ -6,6 +6,7 @@ function App() {
   return (
     <div className="App">
       <Counter initialValue={4321} />
+      <Counter />
     </div>
   );
 }
