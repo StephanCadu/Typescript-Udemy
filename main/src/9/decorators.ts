@@ -124,3 +124,45 @@ function adminProfile<T extends Constructor>(constructor: T) {
 }
 
 new changeAdmin().critic()
+
+// decorator de método
+
+class CheckAccount {
+  private balance: number
+  
+  constructor(balance: number) {
+    this.balance = balance
+  }
+
+  @freeze
+  debit(value: number) {
+    if (value <= this.balance) { 
+      this.balance -= value
+      return true
+    } else {
+      return false
+    }
+  }
+
+  @freeze
+  getBalance() { return this.balance }
+}
+
+// Object.freeze()
+function freeze(target: any, prop: string, descriptor: PropertyDescriptor) {
+  console.log(target);
+  console.log(prop);
+  // diz que o elemento não pode ser sobrescrito
+  descriptor.writable = false  
+}
+
+const newAccount = new CheckAccount(10328.45)
+newAccount.debit(5000)
+console.log(newAccount.getBalance());
+
+// gera erro pois os métodos estão congelados (somente leitura) pelo decorator freeze
+// newAccount.getBalance = function() {
+//   return this['balance'] + 7000
+// }
+
+console.log(newAccount.getBalance());
