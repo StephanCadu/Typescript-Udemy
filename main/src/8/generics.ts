@@ -60,4 +60,23 @@ class BinarySum extends Binary<number, number> {
 
 console.log(new BinarySum(3, 4).exec());
 
+class DateDiff extends Binary<Data, string> {
+  getTime(date: Data): number {
+    const { day, month, year } = date;
+    return new Date(month, day, year).getTime()
+  }
 
+  exec(): string {
+    const t1 = this.getTime(this.op1);
+    const t2 = this.getTime(this.op2);
+    const result = Math.abs(t1 - t2);
+    const dayMilisec = 1000 * 60 * 60 * 24;
+
+    return `As  datas possuem ${Math.ceil(result / dayMilisec)} dias de distância`
+  }
+}
+
+const d1 = new Data(23, 4, 1981);
+const d2 = new Data(14, 7, 2003);
+
+console.log(new DateDiff(d1, d2).exec());

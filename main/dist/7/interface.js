@@ -53,3 +53,14 @@ class ABD {
     a() { }
     b() { }
 }
+Object.prototype.log = function () {
+    console.log(this.toString());
+};
+const x = 2;
+const y = 2;
+const z = 2;
+x.log();
+y.log();
+z.log();
+const cli = { name: 'Nome', toString() { return this.name; } };
+cli.log();
