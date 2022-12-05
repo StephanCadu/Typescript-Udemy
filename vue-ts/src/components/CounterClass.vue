@@ -2,6 +2,8 @@
   <div>
     <h1>Contador Classe: </h1>
     <h2>{{ value }}</h2>
+    <h2>{{ getEvenOdd() }}</h2>
+    <h2>{{ evenOdd }}</h2>
     <button @click="setValue(1)">+</button>
     <button @click="setValue(-1)">-</button>
   </div>
@@ -19,6 +21,14 @@ export default class CounterClass extends Vue {
 
   public setValue(delta: number) {
     this.value += delta
+  }
+
+  public getEvenOdd(): string {
+    return this.value % 2 === 0 ? 'Par' : 'Ímpar' 
+  }
+
+  public get evenOdd(): string {
+    return this.value % 2 === 0 ? 'Par' : 'Ímpar' 
   }
 }
 </script>
