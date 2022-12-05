@@ -1,15 +1,20 @@
 <template>
-  <Counter :initialValue="10" />
+  <div>
+    <Counter :initialValue="10" />
+    <CounterClass />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Counter from './components/MyCounter.vue'
+import CounterClass from './components/CounterClass.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
-    Counter
+    Counter,
+    CounterClass,
   }
 });
 </script>
