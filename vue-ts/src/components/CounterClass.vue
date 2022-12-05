@@ -9,11 +9,13 @@
 
 
 <script>
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component
 export default class CounterClass extends Vue {
-  private value: number = 0
+
+  @Prop(Number) private readonly initialValue?: number
+  private value: number = this.initialValue || 0
 
   public setValue(delta: number) {
     this.value += delta
