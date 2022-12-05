@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CounterValue from "./CounterValue";
+import logRender from '../decorators/logRender'
 
 interface ICounterProps {
   initialValue?: number
@@ -9,6 +10,8 @@ interface ICounterState {
   value: number
 }
 
+// não sei como resolver esse erro
+@logRender
 export default class Counter extends Component<ICounterProps, ICounterState> {
 
   public state = { value: this.props.initialValue || 420 }
